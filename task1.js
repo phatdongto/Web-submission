@@ -12,3 +12,4 @@ button.addEventListener("click" , function (event)
     value[4].innerText = salary * 0.1;
     value[5].innerText = salary * 0.1;
 });
+

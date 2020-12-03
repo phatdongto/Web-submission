@@ -202,3 +202,5 @@ var zodiacs = [
   }
 ];
 module.exports.zodiacs=zodiacs
+module.exports.categories=categories
+module.exports.products=products
