@@ -1,5 +1,6 @@
 var express = require('express');
 var hbs = require('express-handlebars');
+var http = require('http');
 
 var app = express();
 
@@ -20,7 +21,6 @@ app.engine('hbs', hbs({
 }));
 
 app.set('view engine', 'hbs');
-app.set('port',(process.env.PORT || 5000));
 
 //Question3
 var data = require('./data');
@@ -32,6 +32,7 @@ app.get('/Products',function(req,res){
 
   res.render('products')
 });
+
 app.get('/Products/Samsung',function(req,res){
   var products = data.products;
   var cate = data.categories;
@@ -83,6 +84,7 @@ app.get('/Products/Sony',function(req,res){
 //Question 4
 var data = require('./data');
 var zodiac= data.zodiacs;
+
 app.get('/',function(req,res){
   res.sendFile(__dirname + '/index.htm');
 })
@@ -106,6 +108,6 @@ app.get('/Zodiacs/:id',function(req,res){
   res.render('task4');
 })
 
-app.listen(app.get('port'),function(){
-  console.log("Server is listening on port "+ app.get('port'));
+http.createServer(app).listen(process.env.port || 5000, function() {
+  console.log('Express app started');
 });
