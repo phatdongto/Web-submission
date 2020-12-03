@@ -23,7 +23,7 @@ app.set('view engine', 'hbs');
 app.set('port',(process.env.PORT || 5000));
 
 //Question3
-var data = require('./data');
+var data = require('/data');
 app.get('/Products',function(req,res){
   var products = data.products;
   
@@ -81,7 +81,7 @@ app.get('/Products/Sony',function(req,res){
 
 
 //Question 4
-var data = require('./data');
+var data = require('/data');
 var zodiac= data.zodiacs;
 app.get('/',function(req,res){
   res.sendFile(__dirname + '/index.htm');
