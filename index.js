@@ -1,5 +1,8 @@
 var express = require('express');
 var hbs = require('express-handlebars');
+var data = require('./data');
+var zodiac= data.zodiacs;
+
 
 var app = express();
 
@@ -9,6 +12,7 @@ var footer = function (Name)
 {
     return Name;
 }
+
 app.engine('hbs', hbs({
     extname:'hbs',
     defaultLayout: 'layout',
@@ -28,7 +32,6 @@ app.get('/',function(req,res){
 })
 
 //Question3
-var data = require('/data.js');
 app.get('/Products',function(req,res){
   var products = data.products;
   
@@ -37,6 +40,7 @@ app.get('/Products',function(req,res){
 
   res.render('products')
 });
+
 app.get('/Products/Samsung',function(req,res){
   var products = data.products;
   var cate = data.categories;
@@ -52,6 +56,7 @@ app.get('/Products/Samsung',function(req,res){
 
   res.render('products')
 });
+
 app.get('/Products/Panasonic',function(req,res){
   var products = data.products;
   var cate = data.categories;
@@ -67,6 +72,7 @@ app.get('/Products/Panasonic',function(req,res){
 
   res.render('products')
 });
+
 app.get('/Products/Sony',function(req,res){
   var products = data.products;
   var cate = data.categories;
@@ -86,8 +92,7 @@ app.get('/Products/Sony',function(req,res){
 
 
 //Question 4
-var data = require('/data.js');
-var zodiac= data.zodiacs;
+
 
 app.get('/Zodiacs', function(req, res) {
   res.locals.foot = "18127168 - Tran Bui Tai Nhan"
