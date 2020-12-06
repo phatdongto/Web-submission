@@ -22,6 +22,11 @@ app.engine('hbs', hbs({
 app.set('view engine', 'hbs');
 app.set('port',(process.env.PORT || 5000));
 
+// main
+app.get('/',function(req,res){
+  res.sendFile(__dirname + '/index.htm');
+})
+
 //Question3
 var data = require('/data.js');
 app.get('/Products',function(req,res){
@@ -83,9 +88,6 @@ app.get('/Products/Sony',function(req,res){
 //Question 4
 var data = require('/data.js');
 var zodiac= data.zodiacs;
-app.get('/',function(req,res){
-  res.sendFile(__dirname + '/index.htm');
-})
 
 app.get('/Zodiacs', function(req, res) {
   res.locals.foot = "18127168 - Tran Bui Tai Nhan"
