@@ -1,8 +1,5 @@
-var express = require('express');
-var hbs = require('express-handlebars');
-var data = require('./data');
-var zodiac= data.zodiacs;
-
+const express = require('express');
+const hbs = require('express-handlebars');
 
 var app = express();
 
@@ -18,9 +15,7 @@ app.engine('hbs', hbs({
     defaultLayout: 'layout',
     layoutsDir: __dirname +'/views/layouts',
     partialsDir: __dirname +'/views/particals',
-    helpers:{
-      footer: footer
-  }
+
 }));
 
 app.set('view engine', 'hbs');
@@ -28,90 +23,16 @@ app.set('port',(process.env.PORT || 5000));
 
 // main
 app.get('/',function(req,res){
-  res.sendFile(__dirname + '/index.htm');
-})
-
-//Question3
-app.get('/Products',function(req,res){
-  var products = data.products;
-  
-  res.locals.Products = products;
-  res.locals.foot = "18127153 - Phan Nhat Minh"
-
-  res.render('products')
-});
-
-app.get('/Products/Samsung',function(req,res){
-  var products = data.products;
-  var cate = data.categories;
-  var id = cate.find((ele)=>{
-    return ele.title==="Samsung"
-  })
-  var Samsung_products = products.filter((ele)=>{
-    return ele.category==id.id;
-  })
-  
-  res.locals.Products = Samsung_products;
-  res.locals.foot = "18127153 - Phan Nhat Minh"
-
-  res.render('products')
-});
-
-app.get('/Products/Panasonic',function(req,res){
-  var products = data.products;
-  var cate = data.categories;
-  var id = cate.find((ele)=>{
-    return ele.title==="Panasonic"
-  })
-  var Samsung_products = products.filter((ele)=>{
-    return ele.category==id.id;
-  })
-  
-  res.locals.Products = Samsung_products;
-  res.locals.foot = "18127153 - Phan Nhat Minh"
-
-  res.render('products')
-});
-
-app.get('/Products/Sony',function(req,res){
-  var products = data.products;
-  var cate = data.categories;
-  var id = cate.find((ele)=>{
-    return ele.title==="Sony"
-  })
-  var Samsung_products = products.filter((ele)=>{
-    return ele.category==id.id;
-  })
-  
-  res.locals.Products = Samsung_products;
-  res.locals.foot = "18127153 - Phan Nhat Minh"
-
-  res.render('products')
-});
-
-
-
-//Question 4
-
-
-app.get('/Zodiacs', function(req, res) {
-  res.locals.foot = "18127168 - Tran Bui Tai Nhan"
+  res.locals.foot_name = "Group13";
 
   res.render('index');
-});
-
-
-app.get('/Zodiacs/:id',function(req,res){
-
-  var id =req.params.id ;
-  var z = zodiac.find((element)=>{
-    return element.name === id;
-  })
-  res.locals.Zodiac = z;
-  res.locals.foot = "18127168 - Tran Bui Tai Nhan"
-
-  res.render('task4');
 })
+
+//Task3
+app.use('/Products', require('./routes/product'))
+
+//Task4
+app.use('/Zodiacs', require('./routes/zodiac'))
 
 app.listen(app.get('port'),function(){
   console.log("Server is listening on port "+ app.get('port'));
