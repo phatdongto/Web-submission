@@ -5,11 +5,6 @@ var app = express();
 
 app.use(express.static(__dirname ));
 
-var footer = function (Name)
-{
-    return Name;
-}
-
 app.engine('hbs', hbs({
     extname:'hbs',
     defaultLayout: 'layout',
@@ -24,7 +19,7 @@ app.set('port',(process.env.PORT || 5000));
 // main
 app.get('/',function(req,res){
   res.locals.foot_name = "Group13";
-
+  
   res.render('index');
 })
 

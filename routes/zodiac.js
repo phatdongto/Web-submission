@@ -13,10 +13,11 @@ app.get('/', function(req, res) {
 });
   
 app.get('/:id',function(req,res){
-    var id =req.params.id ;
+    var id = req.params.id ;
     var zodiacs = zodiac.find((element)=>{
         return element.name === id;
     })
+    
     res.locals.Zodiac = zodiacs;
     res.locals.foot_name = "18127168 - Tran Bui Tai Nhan";
 

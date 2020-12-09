@@ -6,8 +6,6 @@ const products = data.products;
 
 
 app.get('/',function(req,res){
-
-  
     res.locals.Products = products;
     res.locals.foot_name = "18127153 - Phan Nhat Minh";
   
@@ -15,9 +13,10 @@ app.get('/',function(req,res){
   });
   
   app.get('/:id',function(req,res){
-    var id =req.params.id ;
+    var id = req.params.id ;
     var products = data.products;
     var cate = data.categories;
+
     var id = cate.find((ele)=>{
       return ele.title===id;
     })
